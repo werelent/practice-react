@@ -1,33 +1,57 @@
-import React from "react";
-import Navbar from '../components/Navbar';
-import BookList from '../components/BookList';
+import React, { useState, useEffect } from "react";
 import SearchBar from '../components/SearchBar';
-import UserProfile from '../components/UserProfile';
+import BookCatalog from "../components/BookCatalog";
+import BookDetails from "../components/BookDetails";
+import '../App.css';
 
 function HomePage() {
-    const books = [
-        { id: 1, title: 'Book 1', author: 'Author 1' },
-        { id: 2, title: 'Book 2', author: 'Author 2' },
-        { id: 3, title: 'Book 3', author: 'Author 3' },
-    ];
+    const [books, setBooks] = useState([]);
+    const [filteredBooks, setFilteredBooks] = useState([]);
+    const [selectedBook, setSelectedBook] = useState(null);
 
-    const user = {
-        name: 'John Doe',
-        email: 'johndoe@example.com'
-    };
+    useEffect(() => {
+        getBooks();
+    }, []);
 
-    const handleSearch = (query) => {
-        // handle search functionality
-        console.log('Search query:', query);
+    function getBooks() {
+        const url = 'https://localhost:7157/api/books';
+
+        fetch(url, {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(booksFromServer => {
+                console.log(booksFromServer);
+                setBooks(booksFromServer);
+                setFilteredBooks(booksFromServer);
+            })
+            .catch((error) => {
+                console.log(error);
+                alert(error);
+            });
+    }
+
+    function searchBooks(searchQuery) {
+        const filtered = books.filter(book => book.title.toLowerCase().includes(searchQuery.toLowerCase()));
+        setFilteredBooks(filtered);
+    }
+
+    function handleBookClick(book) {
+        setSelectedBook(book);
+    }
+
+    function handleBookClose() {
+        setSelectedBook(null);
     }
 
     return (
-        <div>
-            <Navbar />
-            <h1>Welcome to KhataKnyharnia</h1>
-            <SearchBar onSearch={handleSearch}/>
-            <BookList books={books}/>
-            <UserProfile user={user}/>
+        <div className='app'>
+            <h1>KhataKnyharnia</h1>
+            <SearchBar onSearch={searchBooks} />
+            <BookCatalog books={filteredBooks} onBookClick={handleBookClick} />
+            {selectedBook && (
+                <BookDetails book={selectedBook} onClose={handleBookClose} />
+            )}
         </div>
     );
 }
