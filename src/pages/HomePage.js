@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import SearchBar from '../components/SearchBar';
+import SearchBar from "../components/SearchBar";
 import BookCatalog from "../components/BookCatalog";
 import BookDetails from "../components/BookDetails";
 import useBookData from "../hooks/useBookData";
-import '../App.css';
+import "../App.css";
 
 function HomePage() {
+  const { filteredBooks, genres, getBooks, filterBooks } = useBookData();
   const [selectedBook, setSelectedBook] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const { books, filteredBooks, getBooks, filterBooks } = useBookData();
+  const [searchQuery, setSearchQuery] = useState("");
 
   function handleBookClick(book) {
     setSelectedBook(book);
@@ -19,21 +19,30 @@ function HomePage() {
   }
 
   function handleSearch() {
-    filterBooks(searchQuery);
-  }
+    const filters = {
+      genre: "",
+      minPrice: "",
+      maxPrice: "",
+    };
+    filterBooks(searchQuery, filters);
+  }  
+
+  function handleApplyFilters(filters) {
+    filterBooks(searchQuery, filters);
+  }  
 
   return (
-    <div className='app'>
+    <div className="app">
       <h1>KhataKnyharnia</h1>
       <SearchBar
         onSearch={handleSearch}
         onSearchChange={setSearchQuery}
         searchQuery={searchQuery}
+        onApplyFilters={handleApplyFilters}
+        genres={genres}
       />
       <BookCatalog books={filteredBooks} onBookClick={handleBookClick} />
-      {selectedBook && (
-        <BookDetails book={selectedBook} onClose={handleBookClose} />
-      )}
+      {selectedBook && <BookDetails book={selectedBook} onClose={handleBookClose} />}
     </div>
   );
 }
