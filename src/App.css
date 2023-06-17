@@ -36,7 +36,8 @@ h1 {
 }
 
 .search {
-  width: 71%;
+  width: 80%;
+  max-width: 500px;
   margin: 4rem 0 2rem;
   display: flex;
   align-items: center;
@@ -89,7 +90,7 @@ h1 {
 }
 
 .book {
-  width: 310px;
+  width: 300px;
   height: 460px;
   margin: 1.5rem;
   position: relative;
@@ -122,6 +123,7 @@ h1 {
 .book div:nth-child(2) img {
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 .book div:nth-child(3) {
@@ -178,9 +180,10 @@ h1 {
 .book-details-card {
   background-color: #fff;
   padding: 20px;
-  width: 600px;
-  max-width: 90%;
+  max-width: 600px;
+  width: 90%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: var(--font-roboto);
 }
 
 .book-details-header {
@@ -199,12 +202,22 @@ h1 {
 .book-details-info {
   display: flex;
   gap: 20px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .book-details-info img {
   width: 200px;
   height: auto;
+}
+
+.book-details-info p {
+  font-family: var(--font-roboto);
+  font-size: 18px;
+  margin: 0; 
+}
+
+.book-details-info p strong {
+  font-weight: bold;
 }
 
 @media screen and (max-width: 600px) {

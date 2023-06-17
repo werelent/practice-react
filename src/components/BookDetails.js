@@ -38,10 +38,10 @@ function BookDetails({ book, onClose }) {
                 <div className="book-details-info">
                     <img src={coverImage} alt={book.title} />
                     <div>
-                        <p>Author: {book.author}</p>
-                        <p>Genre: {book.genre}</p>
-                        <p>Description: {book.description}</p>
-                        <p>Price: {book.price}</p>
+                        <p><strong>Author:</strong> {book.author}</p>
+                        <p><strong>Genre:</strong> {book.genre}</p>
+                        <p><strong>Description:</strong> {book.description}</p>
+                        <p><strong>Price:</strong> {book.price}</p>
                     </div>
                 </div>
             </div>
