@@ -2,25 +2,23 @@ import React, { useState } from "react";
 import SearchIcon from '../search.svg'
 import '../App.css';
 
-function SearchBar({ onSearch }) {
-  const [searchQuery, setSearchQuery] = useState('');
-
+function SearchBar({ onSearch, onSearchChange, searchQuery }) {
   const handleSearch = () => {
-    onSearch(searchQuery);
+    onSearch();
   };
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-        handleSearch();
+      handleSearch();
     }
-};
+  };
 
   return (
     <div className='search'>
       <input
-        placeholder='Search for books...'
+        placeholder='Search by title or author'
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={(e) => onSearchChange(e.target.value)}
         onKeyPress={handleKeyPress}
       />
       <img
@@ -29,7 +27,7 @@ function SearchBar({ onSearch }) {
         onClick={handleSearch}
       />
     </div>
-  )
+  );
 }
 
 export default SearchBar;

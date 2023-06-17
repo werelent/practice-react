@@ -1,59 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SearchBar from '../components/SearchBar';
 import BookCatalog from "../components/BookCatalog";
 import BookDetails from "../components/BookDetails";
+import useBookData from "../hooks/useBookData";
 import '../App.css';
 
 function HomePage() {
-    const [books, setBooks] = useState([]);
-    const [filteredBooks, setFilteredBooks] = useState([]);
-    const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedBook, setSelectedBook] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const { books, filteredBooks, getBooks, filterBooks } = useBookData();
 
-    useEffect(() => {
-        getBooks();
-    }, []);
+  function handleBookClick(book) {
+    setSelectedBook(book);
+  }
 
-    function getBooks() {
-        const url = 'https://localhost:7157/api/books';
+  function handleBookClose() {
+    setSelectedBook(null);
+  }
 
-        fetch(url, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(booksFromServer => {
-                console.log(booksFromServer);
-                setBooks(booksFromServer);
-                setFilteredBooks(booksFromServer);
-            })
-            .catch((error) => {
-                console.log(error);
-                alert(error);
-            });
-    }
+  function handleSearch() {
+    filterBooks(searchQuery);
+  }
 
-    function searchBooks(searchQuery) {
-        const filtered = books.filter(book => book.title.toLowerCase().includes(searchQuery.toLowerCase()));
-        setFilteredBooks(filtered);
-    }
-
-    function handleBookClick(book) {
-        setSelectedBook(book);
-    }
-
-    function handleBookClose() {
-        setSelectedBook(null);
-    }
-
-    return (
-        <div className='app'>
-            <h1>KhataKnyharnia</h1>
-            <SearchBar onSearch={searchBooks} />
-            <BookCatalog books={filteredBooks} onBookClick={handleBookClick} />
-            {selectedBook && (
-                <BookDetails book={selectedBook} onClose={handleBookClose} />
-            )}
-        </div>
-    );
+  return (
+    <div className='app'>
+      <h1>KhataKnyharnia</h1>
+      <SearchBar
+        onSearch={handleSearch}
+        onSearchChange={setSearchQuery}
+        searchQuery={searchQuery}
+      />
+      <BookCatalog books={filteredBooks} onBookClick={handleBookClick} />
+      {selectedBook && (
+        <BookDetails book={selectedBook} onClose={handleBookClose} />
+      )}
+    </div>
+  );
 }
 
 export default HomePage;

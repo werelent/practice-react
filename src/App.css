@@ -23,6 +23,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #212426;
+  height: 100vh;
 }
 
 h1 {
@@ -33,6 +35,18 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   width: fit-content;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .search {
@@ -60,10 +74,50 @@ h1 {
   background: #1f2123;
 }
 
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filter-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+} 
+
 .search img {
   width: 35px;
   height: 35px;
   cursor: pointer;
+}
+
+.filters select,
+.filters input[type="number"] {
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.filters button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.filters button:hover {
+  background-color: #0056b3;
 }
 
 .empty {
@@ -87,6 +141,7 @@ h1 {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  background-color: #212426;
 }
 
 .book {
@@ -178,12 +233,17 @@ h1 {
 }
 
 .book-details-card {
-  background-color: #fff;
+  background-color: #343739;
   padding: 20px;
   max-width: 600px;
   width: 90%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.book-details-card h2 {
   font-family: var(--font-roboto);
+  color: #f9d3b4;
 }
 
 .book-details-header {
@@ -197,12 +257,14 @@ h1 {
   border: none;
   cursor: pointer;
   font-size: 16px;
+  color: #a1a1a1;
 }
 
 .book-details-info {
   display: flex;
   gap: 20px;
   align-items: flex-start;
+  color: #f0f0f0;
 }
 
 .book-details-info img {
@@ -211,6 +273,7 @@ h1 {
 }
 
 .book-details-info p {
+  margin: 0;
   font-family: var(--font-roboto);
   font-size: 18px;
   margin: 0; 
@@ -218,6 +281,7 @@ h1 {
 
 .book-details-info p strong {
   font-weight: bold;
+  color: #f9d3b4;
 }
 
 @media screen and (max-width: 600px) {
