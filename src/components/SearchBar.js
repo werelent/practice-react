@@ -17,7 +17,7 @@ function SearchBar({ onSearch, onSearchChange, onApplyFilters, searchQuery, genr
     };
     onSearch(filters);
   };
-  
+
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -44,39 +44,37 @@ function SearchBar({ onSearch, onSearchChange, onApplyFilters, searchQuery, genr
         onClick={() => setShowFilters(!showFilters)}
       />
 
-      {showFilters && (
-        <div className="filter-options">
-          <div className="genre-filter">
-            <label>Genre:</label>
-            <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)}>
-              <option value="">All</option>
-              {genres.map((genre) => (
-                <option key={genre} value={genre}>
-                  {genre}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="price-filter">
-            <label>Price:</label>
-            <input
-              type="number"
-              placeholder="Min"
-              value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
-            />
-            <input
-              type="number"
-              placeholder="Max"
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
-            />
-          </div>
-
-          <button onClick={handleApply}>Apply</button>
+      <div className="filter-options" style={{ display: showFilters ? "block" : "none" }}>
+        <div className="genre-filter">
+          <label>Genre:</label>
+          <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)}>
+            <option value="">All</option>
+            {genres.map((genre) => (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            ))}
+          </select>
         </div>
-      )}
+
+        <div className="price-filter">
+          <label>Price:</label>
+          <input
+            type="number"
+            placeholder="Min"
+            value={minPrice}
+            onChange={(e) => setMinPrice(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Max"
+            value={maxPrice}
+            onChange={(e) => setMaxPrice(e.target.value)}
+          />
+          <button className="apply-button" onClick={handleApply}>Apply</button>
+        </div>
+
+      </div>
 
       <input
         placeholder="Search by title or author"
