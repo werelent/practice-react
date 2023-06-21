@@ -1,4 +1,3 @@
-// LoginForm.js
 import React, { useState } from 'react';
 
 const LoginForm = () => {
@@ -30,18 +29,22 @@ const LoginForm = () => {
       .then((response) => {
         if (response.ok) {
           // Login successful
-          setSuccessMessage('Login successful!');
-          setErrorMessage('');
+          return response.json();
         } else {
           // Login failed
-          setSuccessMessage('');
-          setErrorMessage('Invalid email or password. Please try again.');
+          throw new Error('Invalid email or password. Please try again.');
         }
       })
+      .then((data) => {
+        // Store the token in local storage
+        localStorage.setItem('token', data.token);
+        setSuccessMessage('Login successful!');
+        setErrorMessage('');
+      })
       .catch((error) => {
-        // Handle network or other errors
+        // Handle login errors
         setSuccessMessage('');
-        setErrorMessage('An error occurred. Please try again.');
+        setErrorMessage(error.message || 'An error occurred. Please try again.');
       });
   };
 
