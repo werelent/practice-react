@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar({ isLoggedIn, userRole }) {
+function Navbar({ isLoggedIn, userRole, handleLogout }) {
+  const handleLogoutClick = () => {
+    handleLogout();
+  };
+
   return (
     <nav className="navbar">
       <ul>
@@ -24,6 +28,13 @@ function Navbar({ isLoggedIn, userRole }) {
               <Link to="/register">Register</Link>
             </li>
           </>
+        )}
+        {isLoggedIn && (
+          <li>
+            <Link to="/" onClick={handleLogoutClick}>
+              Logout
+            </Link>
+          </li>
         )}
       </ul>
     </nav>
