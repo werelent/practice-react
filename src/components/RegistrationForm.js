@@ -53,10 +53,10 @@ const RegistrationForm = () => {
     
 
     return (
-        <div>
+        <div className='registration-form'>
             <h2>Registration Form</h2>
-            {successMessage && <div>{successMessage}</div>}
-            {errorMessage && <div>{errorMessage}</div>}
+            {successMessage && <div className="success-message">{successMessage}</div>}
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>

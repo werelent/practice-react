@@ -12,6 +12,38 @@
   --font-raleway: "Raleway", sans-serif;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #212426;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+}
+
+.navbar li {
+  margin-right: 1rem;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #f9d3b4;
+  font-family: var(--font-roboto);
+  font-weight: 400;
+}
+
+.navbar a:hover {
+  color: #fff;
+}
+
+.navbar .active {
+  font-weight: bold;
+}
+
 body {
   font-family: var(--font-roboto);
   background-color: #212426;
@@ -292,6 +324,7 @@ h1 {
 .book-details-card h2 {
   font-family: var(--font-roboto);
   color: #f9d3b4;
+  margin-bottom: 1rem;
 }
 
 .book-details-header {
@@ -369,4 +402,185 @@ h1 {
     width: 100%;
     margin: 1rem;
   }
+}
+
+.registration-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #212426;
+  border-radius: 8px;
+}
+
+.registration-form h2 {
+  margin-bottom: 1rem;
+  color: #f9d3b4;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: var(--font-roboto);
+}
+
+.registration-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #f9d3b4;
+  font-size: 1rem;
+  font-family: var(--font-roboto);
+}
+
+.registration-form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  font-family: var(--font-raleway);
+  color: #333333;
+  background-color: #ffffff;
+}
+
+.registration-form button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-raleway);
+  font-size: 1rem;
+}
+
+.registration-form button:hover {
+  background-color: #0056b3;
+}
+
+.registration-form .message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  color: #ffffff;
+  background-color: #007bff;
+  border-radius: 4px;
+  font-family: var(--font-raleway);
+}
+
+.registration-form .success-message {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  color: #ffffff;
+  background-color: #007bff;
+  border-radius: 4px;
+  font-family: var(--font-raleway);
+}
+
+.registration-form .error-message {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  color: #ffffff;
+  background-color: #dc3545;
+  border-radius: 4px;
+  font-family: var(--font-raleway);
+}
+
+.login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #212426;
+  border-radius: 8px;
+}
+
+.login-form .form-title {
+  margin-bottom: 1rem;
+  color: #f9d3b4;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: var(--font-roboto);
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #f9d3b4;
+  font-size: 1rem;
+  font-family: var(--font-roboto);
+}
+
+.login-form .form-input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  font-family: var(--font-raleway);
+  color: #333333;
+  background-color: #ffffff;
+}
+
+.login-form button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-raleway);
+  font-size: 1rem;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+}
+
+.login-form .success-message {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  color: #ffffff;
+  background-color: #007bff;
+  border-radius: 4px;
+  font-family: var(--font-raleway);
+}
+
+.login-form .error-message {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  color: #ffffff;
+  background-color: #dc3545;
+  border-radius: 4px;
+  font-family: var(--font-raleway);
+}
+
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.admin-panel h1 {
+  margin-bottom: 1rem;
+  color: #f9d3b4;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: var(--font-roboto);
+}
+
+.admin-panel p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }

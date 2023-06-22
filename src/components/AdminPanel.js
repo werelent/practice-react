@@ -40,11 +40,11 @@ function AdminPanel() {
   }, []);
 
   return (
-    <div>
+    <div className="admin-panel">
       <h1>Admin Panel</h1>
       <p>{message}</p>
     </div>
-  );
+  );  
 }
 
 export default AdminPanel;
