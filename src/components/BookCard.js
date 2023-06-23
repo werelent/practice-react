@@ -27,7 +27,7 @@ function BookCard({ book, onClick, addToCart }) {
       <div>
         <span>{book.author}</span>
         <h3>{book.title}</h3>
-        <button className="add-to-cart-button" onClick={handleAddToCart}>Add to Cart</button> {/* Add the "Add to Cart" button */}
+        <button className="add-to-cart-button" onClick={handleAddToCart}>Add to Cart</button>
       </div>
     </div>
   );

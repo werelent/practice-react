@@ -601,8 +601,7 @@ h1 {
 }
 
 .shopping-cart .cart-item {
-  display: grid;
-  grid-template-columns: 2fr 1fr auto;
+  display: flex;
   align-items: center;
   margin-bottom: 1.5rem;
   color: #f9d3b4;
@@ -610,17 +609,24 @@ h1 {
   font-family: var(--font-roboto);
 }
 
+.shopping-cart .cart-item-details {
+  flex-grow: 1;
+}
+
 .shopping-cart .cart-item p {
-  margin-bottom: 0.5rem;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto;
+  margin: 0;
 }
 
 .shopping-cart .cart-item .title {
-  white-space: normal;
-  overflow: hidden;
-  text-overflow: clip;
+  font-weight: bold;
+}
+
+.shopping-cart .cart-item .price {
+  text-align: right;
+}
+
+.shopping-cart .cart-item .subtotal {
+  text-align: right;
 }
 
 .shopping-cart .cart-item button {
@@ -631,9 +637,19 @@ h1 {
   cursor: pointer;
   font-family: var(--font-raleway);
   font-size: 1rem;
-  padding: 0.75rem;
+  padding: 0.5rem;
+  width: 80px; /* Adjust the width as needed */
+  margin-left: 1rem; /* Add margin to separate the button from item details */
 }
 
 .shopping-cart .cart-item button:hover {
   background-color: #0056b3;
+}
+
+.shopping-cart .total-price {
+  margin-top: 1.5rem;
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #f9d3b4;
 }
