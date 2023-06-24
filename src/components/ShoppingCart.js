@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ShoppingCart = ({ cartItems, onRemoveFromCart }) => {
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -14,10 +15,15 @@ const ShoppingCart = ({ cartItems, onRemoveFromCart }) => {
             <p>Price: ${item.price}</p>
             <p>Subtotal: ${(item.price * item.quantity).toFixed(2)}</p>
           </div>
-          <button onClick={() => onRemoveFromCart(item)}>Remove</button>
+          <button className="remove-button" onClick={() => onRemoveFromCart(item)}>
+            Remove
+          </button>
         </div>
       ))}
       <p className="total-price">Total Price: ${totalPrice.toFixed(2)}</p>
+      <Link to="/checkout" className="checkout-link">
+        Proceed to Checkout
+      </Link>
     </div>
   );
 };

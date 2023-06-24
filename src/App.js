@@ -6,6 +6,7 @@ import RegistrationForm from "./components/RegistrationForm";
 import AdminPanel from "./components/AdminPanel";
 import Navbar from "./components/Navbar";
 import ShoppingCart from "./components/ShoppingCart";
+import CheckoutForm from "./components/CheckoutForm";
 
 function App() {
   const isLoggedInStored = localStorage.getItem("isLoggedIn");
@@ -82,6 +83,7 @@ function App() {
           <Route path="/login" element={<LoginForm setIsLoggedIn={setIsLoggedIn} setUserRole={setUserRole} />} />
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/cart" element={<ShoppingCart cartItems={cartItems} onRemoveFromCart={removeFromCart} />} />
+          <Route path="/checkout" element={<CheckoutForm cartItems={cartItems} />} />
           {isLoggedIn && userRole === "AdminRole" && <Route path="/admin" element={<AdminPanel />} />}
         </Routes>
       </Router>
