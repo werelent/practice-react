@@ -17,8 +17,7 @@ const LoginForm = ({ setIsLoggedIn, setUserRole }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Make a POST request to authenticate the user
+  
     fetch('https://localhost:7157/api/users/login', {
       method: 'POST',
       body: JSON.stringify(formData),
@@ -28,31 +27,30 @@ const LoginForm = ({ setIsLoggedIn, setUserRole }) => {
     })
       .then((response) => {
         if (response.ok) {
-          // Login successful
           return response.json();
         } else {
-          // Login failed
           throw new Error('Invalid email or password. Please try again.');
         }
       })
       .then((data) => {
-        // Store the token and user role in local storage
+        console.log(data)
         localStorage.setItem('token', data.token);
         localStorage.setItem('userRole', data.role);
-
+        localStorage.setItem('userId', data.id);
+  
         setSuccessMessage('Login successful!');
         setErrorMessage('');
-
-        // Set the user's authentication status and role
+  
         setIsLoggedIn(true);
-        setUserRole(data.role); // Assuming the response contains the user's role
+        setUserRole(data.role);
       })
       .catch((error) => {
-        // Handle login errors
         setSuccessMessage('');
         setErrorMessage(error.message || 'An error occurred. Please try again.');
       });
   };
+  
+  
 
   return (
     <div className='login-form'>

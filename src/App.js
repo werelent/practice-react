@@ -15,6 +15,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(isLoggedInStored === "true");
   const [userRole, setUserRole] = useState(userRoleStored || "user");
   const [cartItems, setCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     localStorage.setItem("isLoggedIn", isLoggedIn.toString());
@@ -74,6 +75,14 @@ function App() {
     }
   }
 
+  // Update the totalPrice when cartItems change
+  useEffect(() => {
+    const newTotalPrice = cartItems.reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0);
+    setTotalPrice(newTotalPrice);
+  }, [cartItems]);
+
   return (
     <div className="App">
       <Router>
@@ -83,7 +92,7 @@ function App() {
           <Route path="/login" element={<LoginForm setIsLoggedIn={setIsLoggedIn} setUserRole={setUserRole} />} />
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/cart" element={<ShoppingCart cartItems={cartItems} onRemoveFromCart={removeFromCart} />} />
-          <Route path="/checkout" element={<CheckoutForm cartItems={cartItems} />} />
+          <Route path="/checkout" element={<CheckoutForm cartItems={cartItems} totalPrice={totalPrice} isLoggedIn={isLoggedIn} />} />
           {isLoggedIn && userRole === "AdminRole" && <Route path="/admin" element={<AdminPanel />} />}
         </Routes>
       </Router>

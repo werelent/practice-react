@@ -21,7 +21,7 @@ const ShoppingCart = ({ cartItems, onRemoveFromCart }) => {
         </div>
       ))}
       <p className="total-price">Total Price: ${totalPrice.toFixed(2)}</p>
-      <Link to="/checkout" className="checkout-link">
+      <Link to={{ pathname: '/checkout', state: { totalPrice } }} className="checkout-link">
         Proceed to Checkout
       </Link>
     </div>

@@ -744,3 +744,21 @@ h1 {
   border-radius: 4px;
   font-family: var(--font-raleway);
 }
+
+.checkout-form .cart-link {
+  display: block;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  font-family: var(--font-raleway);
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.checkout-form .cart-link:hover {
+  background-color: #0056b3;
+}
