@@ -17,40 +17,43 @@ const LoginForm = ({ setIsLoggedIn, setUserRole }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
-    fetch('https://localhost:7157/api/users/login', {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Invalid email or password. Please try again.');
-        }
+
+    // Client-side validation
+    if (formData.email.trim() === '' || formData.password.trim() === '') {
+      setErrorMessage('Please enter both email and password.');
+      setSuccessMessage('');
+    } else {
+      fetch('https://localhost:7157/api/users/login', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .then((data) => {
-        console.log(data)
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('userRole', data.role);
-        localStorage.setItem('userId', data.id);
-  
-        setSuccessMessage('Login successful!');
-        setErrorMessage('');
-  
-        setIsLoggedIn(true);
-        setUserRole(data.role);
-      })
-      .catch((error) => {
-        setSuccessMessage('');
-        setErrorMessage(error.message || 'An error occurred. Please try again.');
-      });
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Invalid email or password. Please try again.');
+          }
+        })
+        .then((data) => {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('userRole', data.role);
+          localStorage.setItem('userId', data.id);
+
+          setSuccessMessage('Login successful!');
+          setErrorMessage('');
+
+          setIsLoggedIn(true);
+          setUserRole(data.role);
+        })
+        .catch((error) => {
+          setSuccessMessage('');
+          setErrorMessage(error.message || 'An error occurred. Please try again.');
+        });
+    }
   };
-  
-  
 
   return (
     <div className='login-form'>
@@ -67,6 +70,7 @@ const LoginForm = ({ setIsLoggedIn, setUserRole }) => {
             value={formData.email}
             onChange={handleChange}
             className='form-input'
+            required
           />
         </div>
         <div>
@@ -78,6 +82,8 @@ const LoginForm = ({ setIsLoggedIn, setUserRole }) => {
             value={formData.password}
             onChange={handleChange}
             className='form-input'
+            minLength={8}
+            required
           />
         </div>
         <button type='submit'>Login</button>

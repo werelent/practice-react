@@ -762,3 +762,45 @@ h1 {
 .checkout-form .cart-link:hover {
   background-color: #0056b3;
 }
+
+.order-success {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #212426;
+  border-radius: 8px;
+}
+
+.order-success h2 {
+  margin-bottom: 1.5rem;
+  color: #f9d3b4;
+  font-size: 2rem;
+  text-align: center;
+  font-family: var(--font-roboto);
+}
+
+.order-success p {
+  margin-bottom: 1rem;
+  color: #f9d3b4;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: var(--font-roboto);
+}
+
+.order-success .home-link {
+  display: block;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  font-family: var(--font-raleway);
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.order-success .home-link:hover {
+  background-color: #0056b3;
+}

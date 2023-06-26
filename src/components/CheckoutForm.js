@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
 
 const CheckoutForm = ({ cartItems, totalPrice }) => {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -80,7 +83,7 @@ const CheckoutForm = ({ cartItems, totalPrice }) => {
             .then((data) => {
                 // Handle the response from the backend
                 console.log('Order created:', data);
-                // Reset the form or redirect to a success page
+                navigate('/success');
             })
             .catch((error) => {
                 // Handle error

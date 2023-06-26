@@ -7,6 +7,7 @@ import AdminPanel from "./components/AdminPanel";
 import Navbar from "./components/Navbar";
 import ShoppingCart from "./components/ShoppingCart";
 import CheckoutForm from "./components/CheckoutForm";
+import OrderSuccess from "./components/OrderSuccess";
 
 function App() {
   const isLoggedInStored = localStorage.getItem("isLoggedIn");
@@ -93,6 +94,7 @@ function App() {
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/cart" element={<ShoppingCart cartItems={cartItems} onRemoveFromCart={removeFromCart} />} />
           <Route path="/checkout" element={<CheckoutForm cartItems={cartItems} totalPrice={totalPrice} isLoggedIn={isLoggedIn} />} />
+          <Route path="/success" element={<OrderSuccess />} />
           {isLoggedIn && userRole === "AdminRole" && <Route path="/admin" element={<AdminPanel />} />}
         </Routes>
       </Router>
