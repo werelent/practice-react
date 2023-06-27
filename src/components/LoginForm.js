@@ -41,6 +41,7 @@ const LoginForm = ({ setIsLoggedIn, setUserRole }) => {
           localStorage.setItem('token', data.token);
           localStorage.setItem('userRole', data.role);
           localStorage.setItem('userId', data.id);
+          localStorage.setItem('userEmail', data.email);
 
           setSuccessMessage('Login successful!');
           setErrorMessage('');

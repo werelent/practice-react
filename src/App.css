@@ -804,3 +804,55 @@ h1 {
 .order-success .home-link:hover {
   background-color: #0056b3;
 }
+
+.order-history {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #212426;
+  border-radius: 8px;
+}
+
+.order-history h2 {
+  margin-bottom: 1.5rem;
+  color: #f9d3b4;
+  font-size: 2rem;
+  text-align: center;
+  font-family: var(--font-roboto);
+}
+
+.order-history .order-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order-history .order-item {
+  background-color: #333333;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  color: #f9d3b4;
+  font-size: 1.2rem;
+  font-family: var(--font-roboto);
+}
+
+.order-history .order-item p {
+  margin: 0;
+}
+
+.order-history .order-item p:first-child {
+  font-weight: bold;
+}
+
+.order-history .order-item p:last-child {
+  margin-top: 0.5rem;
+}
+
+.order-history p.no-history {
+  color: #f9d3b4;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 1rem;
+  font-family: var(--font-roboto);
+}

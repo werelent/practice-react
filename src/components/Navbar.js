@@ -22,6 +22,11 @@ function Navbar({ isLoggedIn, userRole, handleLogout, cartItems }) {
             <Link to="/admin">Admin Panel</Link>
           </li>
         )}
+        {isLoggedIn && (
+          <li>
+            <Link to="/order-history">Order History</Link>
+          </li>
+        )}
       </ul>
       <ul>
         {!isLoggedIn && (
