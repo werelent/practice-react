@@ -69,6 +69,7 @@ const CheckoutForm = ({ cartItems, totalPrice }) => {
                 return quantities;
             }, {}),
             totalPrice: totalPrice.toFixed(2),
+            status: "Pending",
         };
 
         // Send the order data to the backend API

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function AdminPanel() {
   const [message, setMessage] = useState('');
@@ -6,11 +7,11 @@ function AdminPanel() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('token'); // Retrieve the token from storage
+        const token = localStorage.getItem('token');
         console.log('Token:', token);
 
         if (!token) {
-          setMessage('Token is missing. Please log in again.'); // Token not found in storage
+          setMessage('Token is missing. Please log in again.');
           return;
         }
 
@@ -18,17 +19,17 @@ function AdminPanel() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`, // Include the token in the request headers
+            Authorization: `Bearer ${token}`,
           },
         });
 
         if (response.ok) {
           const data = await response.json();
-          setMessage(data.message); // Display any response message from the server
+          setMessage(data.message);
         } else if (response.status === 401) {
-          setMessage('You are not authorized to perform this action.'); // Unauthorized access
+          setMessage('You are not authorized to perform this action.');
         } else {
-          setMessage('An error occurred while performing the action.'); // Other error
+          setMessage('An error occurred while performing the action.');
         }
       } catch (error) {
         console.error('An error occurred:', error);
@@ -43,8 +44,19 @@ function AdminPanel() {
     <div className="admin-panel">
       <h1>Admin Panel</h1>
       <p>{message}</p>
+      <div>
+        <h2>Operations:</h2>
+        <ul>
+          <li>
+            <Link to="/admin/books">Manage Books</Link>
+          </li>
+          <li>
+            <Link to="/admin/orders">Manage Orders</Link>
+          </li>
+        </ul>
+      </div>
     </div>
-  );  
+  );
 }
 
 export default AdminPanel;

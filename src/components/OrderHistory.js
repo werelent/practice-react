@@ -25,6 +25,7 @@ const OrderHistory = () => {
         return response.json();
       })
       .then((data) => {
+        const reversedData = data.reverse();
         setOrderHistory(data);
         setIsLoading(false);
       })
@@ -55,6 +56,7 @@ const OrderHistory = () => {
                 <div>Order Date: {order.orderDate}</div>
                 <div>Total Price: {order.totalPrice}</div>
                 <div>Address: {order.address}</div>
+                <div>Status: {order.status}</div>
                 {Object.keys(order.bookInfo).length > 0 ? (
                   <div>
                     Books:
