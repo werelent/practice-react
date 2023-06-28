@@ -10,6 +10,7 @@ import CheckoutForm from "./components/CheckoutForm";
 import OrderSuccess from "./components/OrderSuccess";
 import OrderHistory from './components/OrderHistory';
 import BookManagement from "./components/BookManagement";
+import OrderManagement from "./components/OrderManagement";
 
 function App() {
   const isLoggedInStored = localStorage.getItem("isLoggedIn");
@@ -100,6 +101,7 @@ function App() {
           <Route path="/order-history" element={<OrderHistory />} />
           {isLoggedIn && userRole === "AdminRole" && <Route path="/admin" element={<AdminPanel />} />}
           {isLoggedIn && userRole === "AdminRole" && <Route path="/admin/books" element={<BookManagement />} />}
+          {isLoggedIn && userRole === "AdminRole" && <Route path="/admin/orders" element={<OrderManagement />} />}
         </Routes>
       </Router>
     </div>
