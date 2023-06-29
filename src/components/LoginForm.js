@@ -57,8 +57,8 @@ const LoginForm = ({ setIsLoggedIn, setUserRole }) => {
   };
 
   return (
-    <div className='login-form'>
-      <h2 className='form-title'>Login Form</h2>
+    <div className='registration-form'>
+      <h2>Login Form</h2>
       {successMessage && <div className='success-message'>{successMessage}</div>}
       {errorMessage && <div className='error-message'>{errorMessage}</div>}
       <form onSubmit={handleSubmit}>
@@ -70,7 +70,6 @@ const LoginForm = ({ setIsLoggedIn, setUserRole }) => {
             name='email'
             value={formData.email}
             onChange={handleChange}
-            className='form-input'
             required
           />
         </div>
@@ -82,7 +81,6 @@ const LoginForm = ({ setIsLoggedIn, setUserRole }) => {
             name='password'
             value={formData.password}
             onChange={handleChange}
-            className='form-input'
             minLength={8}
             required
           />

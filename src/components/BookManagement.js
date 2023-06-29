@@ -109,7 +109,7 @@ function BookManagement() {
 
 function BookList({ books, handleEdit, handleDelete }) {
     return (
-        <table className="book-list">
+        <table className="order-list">
             <thead>
                 <tr>
                     <th>Title</th>
@@ -165,7 +165,7 @@ function AddBookForm({ handleAdd }) {
     };
 
     return (
-        <form className="add-book-form" onSubmit={handleSubmit}>
+        <form className="edit-order" onSubmit={handleSubmit}>
             <h3>Add Book</h3>
             <label>
                 Title:
@@ -219,7 +219,7 @@ function EditBookForm({ book, handleCancel, handleUpdate }) {
     };
 
     return (
-        <form className="edit-book-form" onSubmit={handleSubmit}>
+        <form className="edit-order" onSubmit={handleSubmit}>
             <h3>Edit Book</h3>
             <label>
                 Title:

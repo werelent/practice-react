@@ -81,7 +81,7 @@ function OrderManagement() {
     };
 
     return (
-        <div className='order-management'>
+        <div className='book-management'>
             <h2>Order Management</h2>
             <div>
                 {selectedOrder && (

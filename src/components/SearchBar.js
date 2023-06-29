@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import SearchIcon from "../search.svg";
-import FilterIcon from "../filter.png";
+import SearchIcon from "../search-icon.png";
+import FilterIcon from "../filter-icon.png";
 import "../App.css";
 
 function SearchBar({ onSearch, onSearchChange, onApplyFilters, searchQuery, genres }) {
@@ -71,8 +71,11 @@ function SearchBar({ onSearch, onSearchChange, onApplyFilters, searchQuery, genr
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
           />
-          <button className="apply-button" onClick={handleApply}>Apply</button>
+          <div className="apply-button-container">
+            <button className="apply-button" onClick={handleApply}>Apply</button>
+          </div>
         </div>
+
 
       </div>
 
