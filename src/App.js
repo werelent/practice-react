@@ -5,6 +5,7 @@ import LoginForm from "./components/LoginForm";
 import RegistrationForm from "./components/RegistrationForm";
 import AdminPanel from "./components/AdminPanel";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import ShoppingCart from "./components/ShoppingCart";
 import CheckoutForm from "./components/CheckoutForm";
 import OrderSuccess from "./components/OrderSuccess";
@@ -103,6 +104,7 @@ function App() {
           {isLoggedIn && userRole === "AdminRole" && <Route path="/admin/books" element={<BookManagement />} />}
           {isLoggedIn && userRole === "AdminRole" && <Route path="/admin/orders" element={<OrderManagement />} />}
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
