@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
-const CheckoutForm = ({ cartItems, totalPrice }) => {
+const CheckoutForm = ({ cartItems, totalPrice, setCartItems }) => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -58,7 +58,6 @@ const CheckoutForm = ({ cartItems, totalPrice }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Create the order object
         const order = {
             name: formData.name,
             email: formData.email,
@@ -72,7 +71,6 @@ const CheckoutForm = ({ cartItems, totalPrice }) => {
             status: "Pending",
         };
 
-        // Send the order data to the backend API
         fetch('https://localhost:7157/api/orders', {
             method: 'POST',
             headers: {
@@ -82,12 +80,13 @@ const CheckoutForm = ({ cartItems, totalPrice }) => {
         })
             .then((response) => response.json())
             .then((data) => {
-                // Handle the response from the backend
                 console.log('Order created:', data);
+                // Empty the cart after successful checkout
+                setCartItems([]);
+                localStorage.removeItem('cartItems');
                 navigate('/success');
             })
             .catch((error) => {
-                // Handle error
                 console.error('Error creating order:', error);
             });
     };
@@ -136,18 +135,20 @@ const CheckoutForm = ({ cartItems, totalPrice }) => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="paymentMethod">Payment Method</label>
-                    <select
-                        id="paymentMethod"
-                        name="paymentMethod"
-                        value={formData.paymentMethod}
-                        onChange={handleInputChange}
-                        className="form-input"
-                        required
-                    >
-                        <option value="">-- Select Payment Method --</option>
-                        <option value="creditCard">Credit Card</option>
-                        <option value="paypal">PayPal</option>
-                    </select>
+                    <div className="select-wrapper">
+                        <select
+                            id="paymentMethod"
+                            name="paymentMethod"
+                            value={formData.paymentMethod}
+                            onChange={handleInputChange}
+                            className="form-input"
+                            required
+                        >
+                            <option value="">-- Select Payment Method --</option>
+                            <option value="creditCard">Credit Card</option>
+                            <option value="paypal">PayPal</option>
+                        </select>
+                    </div>
                 </div>
                 <button type="submit" className="form-button">
                     Place Order

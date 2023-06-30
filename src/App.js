@@ -96,7 +96,7 @@ function App() {
           <Route path="/login" element={<LoginForm setIsLoggedIn={setIsLoggedIn} setUserRole={setUserRole} />} />
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/cart" element={<ShoppingCart cartItems={cartItems} onRemoveFromCart={removeFromCart} />} />
-          <Route path="/checkout" element={<CheckoutForm cartItems={cartItems} totalPrice={totalPrice} isLoggedIn={isLoggedIn} />} />
+          <Route path="/checkout" element={<CheckoutForm cartItems={cartItems} totalPrice={totalPrice} isLoggedIn={isLoggedIn} setCartItems={setCartItems} />} />
           <Route path="/success" element={<OrderSuccess />} />
           <Route path="/order-history" element={<OrderHistory />} />
           {isLoggedIn && userRole === "AdminRole" && <Route path="/admin" element={<AdminPanel />} />}
