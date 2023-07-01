@@ -274,6 +274,25 @@ body {
   opacity: 1;
 }
 
+.add-to-cart-button-det {
+  display: block;
+  width: fit-content;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  margin-right: auto;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-raleway);
+  font-size: 1rem;
+}
+
+.add-to-cart-button-det:hover {
+  background-color: #0056b3;
+}
+
 .add-to-cart-button {
   position: absolute;
   top: 8px;
@@ -307,7 +326,7 @@ body {
 .book:hover .add-to-cart-button::after {
   content: "To Cart";
   position: absolute;
-  top: calc(100% + 4px);
+  top: -28px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #f9d3b4;
@@ -354,6 +373,13 @@ body {
   margin-bottom: 1rem;
 }
 
+.out-of-stock {
+  font-weight: bold;
+  color: red;
+  font-family: var(--font-roboto);
+  font-size: 1.25rem;
+}
+
 .book-details-header {
   display: flex;
   justify-content: space-between;
@@ -395,7 +421,7 @@ body {
 .book-details-info p {
   margin: 0;
   font-family: var(--font-roboto);
-  font-size: 18px;
+  font-size: 1rem;
   margin: 0;
 }
 
