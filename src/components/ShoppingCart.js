@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ShoppingCart = ({ cartItems, onRemoveFromCart }) => {
+const ShoppingCart = ({ cartItems, onRemoveFromCart, onAddToCart }) => {
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   if (cartItems.length === 0) {
@@ -16,34 +16,54 @@ const ShoppingCart = ({ cartItems, onRemoveFromCart }) => {
   return (
     <div className="shopping-cart">
       <h2>Shopping Cart</h2>
-      {Object.values(cartItems).map((item) => (
-        <div className="cart-item" key={item.id}>
-          <div className="cart-item-details">
-            <p>{item.title}</p>
-            <p>Quantity: {item.quantity}</p>
-            <p>Price: ${item.price}</p>
-            <p>Subtotal: ${(item.price * item.quantity).toFixed(2)}</p>
-          </div>
-          <button className="remove-button" onClick={() => onRemoveFromCart(item)}>
-            Remove
-          </button>
-        </div>
-      ))}
-      <p className="total-price">Total Price: ${totalPrice.toFixed(2)}</p>
-      <Link
-        to={{ pathname: '/checkout', state: { totalPrice } }}
-        className={`checkout-link ${cartItems.length === 0 ? 'disabled' : ''}`}
-        onClick={(e) => {
-          if (cartItems.length === 0) {
-            e.preventDefault();
-            alert('Your cart is empty. Please add items to proceed.');
-          }
-        }}
-      >
-        Proceed to Checkout
-      </Link>
+      {Object.values(cartItems).length > 0 ? (
+        <table className="order-list">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Subtotal</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.values(cartItems).map((item) => (
+              <tr key={item.id}>
+                <td>{item.title}</td>
+                <td>{item.quantity}</td>
+                <td>${item.price}</td>
+                <td>${(item.price * item.quantity).toFixed(2)}</td>
+                <td>
+                  <button className="quantity-button minus" onClick={() => onRemoveFromCart(item)}>
+                    -
+                  </button>
+                  <button className="quantity-button plus" onClick={() => onAddToCart(item)}>
+                    +
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="4" className="total-price">
+                Total Price: ${totalPrice.toFixed(2)}
+              </td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      ) : (
+        <p className="empty-cart-message">Your cart is empty. Please add items to proceed.</p>
+      )}
+      {Object.keys(cartItems).length > 0 && (
+        <Link to={{ pathname: '/checkout', state: { totalPrice } }} className="checkout-link">
+          Proceed to Checkout
+        </Link>
+      )}
     </div>
   );
-};
+}
 
 export default ShoppingCart;

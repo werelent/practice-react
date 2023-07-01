@@ -470,6 +470,27 @@ body {
   cursor: not-allowed;
 }
 
+.order-list .remove-button,
+.order-list .add-button {
+  display: inline-block;
+  width: 30px; /* Adjust the width as desired */
+  padding: 0;
+  margin-right: 5px; /* Adjust the margin as desired */
+  font-size: 18px; /* Adjust the font size as desired */
+  text-align: center;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-raleway);
+}
+
+.order-list .remove-button:hover,
+.order-list .add-button:hover {
+  background-color: #0056b3;
+}
+
 .registration-form,
 .checkout-form,
 .order-success,
@@ -489,7 +510,6 @@ body {
 
 .registration-form,
 .checkout-form,
-.shopping-cart,
 .add-book-form,
 .edit-book-form,
 .edit-order {
@@ -511,6 +531,14 @@ body {
   font-size: 1.5rem;
   text-align: center;
   font-family: var(--font-roboto);
+}
+
+.shopping-cart p {
+  margin-top: 1rem;
+  color: #f9d3b4;
+  font-size: 1.25rem;
+  font-family: var(--font-roboto);
+  text-align: center;
 }
 
 label {
@@ -633,52 +661,6 @@ button:hover {
   color: #343739;
 }
 
-.shopping-cart .cart-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  color: #f9d3b4;
-  font-size: 1.2rem;
-  font-family: var(--font-roboto);
-}
-
-.shopping-cart .cart-item-details {
-  flex-grow: 1;
-}
-
-.shopping-cart .cart-item p {
-  margin: 0;
-}
-
-.shopping-cart .cart-item .title {
-  font-weight: bold;
-}
-
-.shopping-cart .cart-item .price {
-  text-align: right;
-}
-
-.shopping-cart .cart-item .subtotal {
-  text-align: right;
-}
-
-.shopping-cart .cart-item button.remove-button {
-  color: #ffffff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: var(--font-raleway);
-  font-size: 1rem;
-  padding: 0.5rem;
-  width: 80px;
-  margin-left: 1rem;
-}
-
-.shopping-cart .cart-item button.remove-button:hover {
-  background-color: #0056b3;
-}
-
 .shopping-cart .total-price {
   margin-top: 1.5rem;
   text-align: right;
@@ -686,6 +668,11 @@ button:hover {
   font-weight: bold;
   color: #f9d3b4;
 }
+
+.shopping-cart .quantity-button {
+  font-size: 1.5rem;
+    padding: 0; /* Remove any padding */
+} 
 
 .shopping-cart .checkout-link {
   display: block;
@@ -699,18 +686,14 @@ button:hover {
   font-family: var(--font-raleway);
   font-size: 1rem;
   text-decoration: none;
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .shopping-cart .checkout-link:hover {
   background-color: #0056b3;
-}
-
-.shopping-cart p {
-  margin-top: 1rem;
-  color: #f9d3b4;
-  font-size: 1.25rem;
-  font-family: var(--font-roboto);
-  text-align: center;
 }
 
 .checkout-form .cart-link {
