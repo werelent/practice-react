@@ -58,26 +58,43 @@ const CheckoutForm = ({ cartItems, totalPrice, setCartItems }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const order = {
-            name: formData.name,
-            email: formData.email,
-            address: formData.address,
-            paymentMethod: formData.paymentMethod,
-            bookQuantities: cartItems.reduce((quantities, item) => {
-                quantities[item.id] = item.quantity;
-                return quantities;
-            }, {}),
-            totalPrice: totalPrice.toFixed(2),
-            status: "Pending",
-        };
+        // Create an object with book IDs as keys and quantities as values
+        const bookQuantities = cartItems.reduce((quantities, item) => {
+            quantities[item.id] = item.quantity;
+            return quantities;
+        }, {});
 
-        fetch('https://localhost:7157/api/orders', {
-            method: 'POST',
+        // Update the book quantities on the server
+        fetch('https://localhost:7157/api/books/updateQuantities', {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(order),
+            body: JSON.stringify(bookQuantities),
         })
+            .then((response) => {
+                if (response.ok) {
+                    // Quantity update successful, proceed with creating the order
+                    return fetch('https://localhost:7157/api/orders', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name: formData.name,
+                            email: formData.email,
+                            address: formData.address,
+                            paymentMethod: formData.paymentMethod,
+                            bookQuantities: bookQuantities,
+                            totalPrice: totalPrice.toFixed(2),
+                            status: 'Pending',
+                        }),
+                    });
+                } else {
+                    // Quantity update failed, throw an error
+                    throw new Error('Failed to update book quantities');
+                }
+            })
             .then((response) => response.json())
             .then((data) => {
                 console.log('Order created:', data);
