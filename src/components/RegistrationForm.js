@@ -27,9 +27,15 @@ const RegistrationForm = () => {
       setErrorMessage('Please fill in all the fields.');
       setSuccessMessage('');
     } else {
+      const registrationData = {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+      };
+
       fetch('https://localhost:7157/api/users/register', {
         method: 'POST',
-        body: JSON.stringify(formData),
+        body: JSON.stringify(registrationData),
         headers: {
           'Content-Type': 'application/json',
         },
